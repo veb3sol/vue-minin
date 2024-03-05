@@ -3,9 +3,24 @@
 const App = {
     data(){                 // вернет обьект с данными, которые видны в шаблоне
         return {
-            counter:0,
-            title: false
+            plx: "Введите текст",
+            title: "Добавь событие",
+            inputValue: '',
+            note: ['Заметка1', 'Заметка2']
         }
+    },
+    methods: {
+        inputChengeHandler(event){
+            console.log(event.target.value)
+            this.inputValue = event.target.value
+        },
+        addNewNote(){
+            this.note.push(this.inputValue)
+        },
+        removeNote(idx){
+            this.note.splice(idx, 1)
+        }
+       
     }
 
 }
