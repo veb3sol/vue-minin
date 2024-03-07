@@ -15,12 +15,30 @@ const App = {
             this.inputValue = event.target.value
         },
         addNewNote(){
-            this.note.push(this.inputValue)
+            if(this.inputValue !== ''){
+                this.note.push(this.inputValue)
+            }
         },
         removeNote(idx){
             this.note.splice(idx, 1)
-        }
+        },
+        toUpperCase(s){
+            return s.toUpperCase()
+        },
        
+    },
+    computed: {
+        doubleNumComputed(){
+            return this.note.length * 2
+        }, 
+    },
+    watch: {
+        inputValue(value){
+            if(value.length >= 10){
+                this.inputValue = ''
+            }
+            console.log(value)
+        }
     }
 
 }

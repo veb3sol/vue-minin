@@ -9,23 +9,34 @@
   <body>
     <div class="container" id="myapp">
       <div class="card">
-        <h1> {{title}}</h1>
+        <h1 :style="{
+          color: inputValue.length < 5 ? 'darkred': 'darkblue',
+          fontSize: inputValue.length < 6 ? '2rem': '1.5rem'
+        }"> {{title}}</h1>
         <div class="form-control">
           <input 
             type="text" 
-            v-bind:placeholder="plx" 
-            v-bind:value="inputValue"
-            v-on:input="inputChengeHandler"
-            v-on:keypress.enter="addNewNote"
+            :placeholder="plx" 
+            v-model="inputValue"
+            @keypress.enter="addNewNote"
             />
         </div>
         <h2>inputValue: {{ inputValue }}</h2>
           <button class="btn" v-on:click="addNewNote" >Добавить</button>
          <hr/>
          <ul class="list" v-if="note.length !== 0">
-          <li class="list-item" v-for="(not, id) in note" >{{ not }}
+          <li class="list-item" v-for="(not, id) in note" >
+            <span :class="note.length > 3 ? 'primary': 'bold'" >{{ toUpperCase(not) }}</span>
+            <span :class="{
+              'primary': true,
+              'bold': note.length > 5
+            }">супер</span>
+            <span :class="['bold', {'primary': note.length > 7}]">77777</span>
             <button class="btn danger" v-on:click="removeNote(id)">Удалить</button>
           </li>
+          
+          <hr/>
+          <li>Записей всего: {{ note.length }} | удвоено: {{ doubleNumComputed }}</li>
           
          </ul>
          <div v-else>Заметок нету</div>
