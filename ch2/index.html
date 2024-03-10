@@ -5,15 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Counter</title>
   <link rel="stylesheet" href="theme.css" />
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-<div class="container pt-5" id="app">
+<div class="container pt-5" id="app" v-cloak>
   <div class="card center">
+    <h1 v-text="title" ></h1>
+    <h1 v-once >{{title}}</h1>
+    <h1 v-pre >{{title}}</h1>
+    <div v-html="myHtml"></div>
+    <button @click="title='aaaaaaaa'" >Нажать</button>
+
+    <ul class="list">
+      <li 
+      class="list-item" 
+      v-for="(item, id) in num"
+      @click = "num.splice(id, 1)"
+      >
+      {{item}}
+    </li>
+    </ul>
+
+    <div v-show="num.length === 0" >Элементов нет</div>
+
+    <ul class="list2">
+      <li 
+      class="list2-item" 
+      v-for="(item, key) in person"
+      >
+        {{key}} -- {{ item }}
+      </li>
+    </ul>
 
   </div>
 </div>
 
-<script src="https://unpkg.com/vue@next"></script>
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
