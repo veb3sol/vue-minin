@@ -23,10 +23,12 @@
     <ul class="list">
       <li 
       class="list-item" 
-      v-for="(item, id) in num"
+      v-for="(item, id) in eventItems"
       @click = "num.splice(id, 1)"
+      :key="item"
       >
-      {{item}}
+      {{item}} &nbsp; 
+      <input type="text" @click.prevent.stop>
     </li>
     </ul>
 
@@ -40,6 +42,8 @@
         {{key}} -- {{ item }}
       </li>
     </ul>
+
+
 
   </div>
 </div>
