@@ -9,6 +9,14 @@ Vue.createApp({
         },
         num: [1,2,3,4,5,6]
     }),
+    methods: {
+        dobav(){
+          console.log(this.$refs.myInput.value)  
+        },
+        rem(id){
+          this.num.splice(id, 1)  
+        }
+    },
     computed: {
        eventItems(){
         return this.num.filter(i => i%2)

@@ -12,6 +12,7 @@
   </style>
 </head>
 <body>
+  
 <div class="container pt-5" id="app" v-cloak>
   <div class="card center">
     <h1 v-text="title" ></h1>
@@ -20,11 +21,16 @@
     <div v-html="myHtml"></div>
     <button @click="title='aaaaaaaa'" >Нажать</button>
 
+    <div class="form-control">
+      <input type="text" @keyup="dobav" ref="myInput">
+      <input type="text" @keyup.shift.enter.exact ="dobav($event)" ref="myInput">
+    </div>
+    
     <ul class="list">
       <li 
       class="list-item" 
       v-for="(item, id) in eventItems"
-      @click = "num.splice(id, 1)"
+      @click = "rem(id), log(item)"
       :key="item"
       >
       {{item}} &nbsp; 
